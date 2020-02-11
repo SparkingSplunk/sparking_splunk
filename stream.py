@@ -7,7 +7,7 @@ sc.setLogLevel('ERROR')
 ssc = StreamingContext(sc, 1)
 
 # Create a DStream that will connect to hostname:port, like localhost:9999
-lines = ssc.socketTextStream("localhost", 9999)
+lines = ssc.socketTextStream("localhost", 9001)
 lines.pprint()
 
 # # Split each line into words
