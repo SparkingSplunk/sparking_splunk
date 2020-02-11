@@ -2,7 +2,7 @@
 1. Go to /Applications/Splunk/bin
    nc -lk 9997
    (Setting up the port listener so that we know that the port is receiving data)
-2. Go to /Applications/Splunk/bin/splunk
+2. Go to /Applications/Splunk/bin
    ./splunk restart
    (Starting Splunk)
 3. Go to /sparking_splunk/dataGen
