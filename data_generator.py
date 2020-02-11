@@ -1,6 +1,4 @@
-# Echo client program
 import socket
-import sys
 import json
 from time import sleep
 
@@ -16,10 +14,9 @@ package = {
 HOST = 'localhost'    # The remote host
 PORT = 9000           # The same port as used by the server
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
 while True:
     try:
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((HOST, PORT))
 
         while True:
@@ -28,8 +25,8 @@ while True:
             value += 1
             string_package = json.dumps(package) + '\n'
             print(string_package)
-
             s.send(string_package.encode())
+
             sleep(1)
 
     except ConnectionRefusedError as e:
@@ -41,22 +38,5 @@ while True:
     except ConnectionAbortedError as e:
         print(e)
 
-
-
-
-
-#
-#
-# if s is None:
-#     print('could not open socket')
-#     sys.exit(1)
-# with s:
-#     while True:
-#
-#         package['metric_value'] = value
-#         value += 1
-#         s.send((json.dumps(package) + '\n').encode())
-#         sleep(1)
-#         # data = s.recv(1024)
-#
-# # print('Received', repr(data))
+    except OSError as e:
+        print(e)
