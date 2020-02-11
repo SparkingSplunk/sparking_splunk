@@ -2,18 +2,48 @@ from pyspark import SparkContext
 from pyspark.streaming import StreamingContext
 
 import socket
+import json
 
 # Create a local StreamingContext with two working thread and batch interval of 1 second
-sc = SparkContext("local[2]", "NetworkWordCount")
+sc = SparkContext("local[*]", "NetworkWordCount")
 sc.setLogLevel('ERROR')
 ssc = StreamingContext(sc, 1)
 
 # Create a DStream that will connect to hostname:port, like localhost:9999
 events = ssc.socketTextStream("localhost", 9001)
 
-events = events.map(lambda event: event.split(" "))
+events_dict = events.map(lambda event: json.loads(events))
+events_dict.pprint()
 
-events.pprint()
+
+
+
+# HOST = 'localhost'    # The remote host
+# PORT = 9005           # The same port as used by the server
+#
+# while True:
+#     try:
+#         s.connect((HOST, PORT))
+#
+#         while True:
+#
+#             package['metric_value'] = value
+#             value += 1
+#             string_package = json.dumps(package) + '\n'
+#             print(string_package)
+#
+#             s.send(string_package.encode())
+#             sleep(1)
+#
+#     except ConnectionRefusedError as e:
+#         print(e)
+#
+#     except ConnectionResetError as e:
+#         print(e)
+#
+#     except ConnectionAbortedError as e:
+#         print(e)
+
 
 
 

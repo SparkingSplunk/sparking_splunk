@@ -40,9 +40,6 @@ while True:
         input_socket.close()
         output_socket.close()
 
-    except ConnectionRefusedError as e:
-        print(e)
-
     except ConnectionResetError as e:
         print(e)
 

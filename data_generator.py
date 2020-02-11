@@ -26,10 +26,10 @@ while True:
 
             package['metric_value'] = value
             value += 1
-            stringpackage = json.dumps(package) + '\n'
-            print(stringpackage)
+            string_package = json.dumps(package) + '\n'
+            print(string_package)
 
-            s.send(stringpackage.encode())
+            s.send(string_package.encode())
             sleep(1)
 
     except ConnectionRefusedError as e:
