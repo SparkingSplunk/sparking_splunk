@@ -9,11 +9,13 @@
    bash curl.sh 
    (Sending data)
 
+
 -- APPEND THESE LINES TO THE SPECIFIED FILES! -- 
 
 props.conf: 
 [source::testsrc]
 TRANSFORMS-testsrc=group1transform
+
 
 outputs.conf:
 [tcpout]
@@ -22,6 +24,7 @@ defaultGroup=nothing
 [tcpout:group1]
 server=127.0.0.1:9997
 sendCookedData = false
+
 
 transforms.conf:
 [group1transform]
