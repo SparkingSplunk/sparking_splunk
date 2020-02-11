@@ -1,14 +1,22 @@
 from pyspark import SparkContext
 from pyspark.streaming import StreamingContext
 
+import socket
+
 # Create a local StreamingContext with two working thread and batch interval of 1 second
 sc = SparkContext("local[2]", "NetworkWordCount")
 sc.setLogLevel('ERROR')
 ssc = StreamingContext(sc, 1)
 
 # Create a DStream that will connect to hostname:port, like localhost:9999
-lines = ssc.socketTextStream("localhost", 9001)
-lines.pprint()
+events = ssc.socketTextStream("localhost", 9001)
+
+events = events.map(lambda event: event.split(" "))
+
+events.pprint()
+
+
+
 
 # # Split each line into words
 # words = lines.flatMap(lambda line: line.split(" "))
@@ -19,6 +27,8 @@ lines.pprint()
 #
 # # Print the first ten elements of each RDD generated in this DStream to the console
 # wordCounts.pprint()
+
+
 
 ssc.start()             # Start the computation
 ssc.awaitTermination()  # Wait for the computation to terminate
