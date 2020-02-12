@@ -202,7 +202,7 @@ require([
 // ]]>
 require(["splunkjs/mvc/searchmanager"], function(SearchManager) {
     const search_string = `
-    index = tier_2
+    index = test01
     | eval Time = _time
     | sort _time
     | table metric_value Time`;

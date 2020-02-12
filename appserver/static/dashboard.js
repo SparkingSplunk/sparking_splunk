@@ -111,8 +111,7 @@ document.getElementById('removeData').addEventListener('click', function() {
     // config.data.labels.splice(-1, 1); // remove the label first
     config.data.labels = config.data.labels.slice(1)
     config.data.datasets.forEach(function(dataset) {
-        // dataset.data.pop();
-        dataset.data = dataset.data.slice(1);
+        dataset.data.shift();
     });
 
     window.myLine.update();
