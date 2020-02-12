@@ -5,14 +5,6 @@ import socket
 import json
 
 
-# try:
-#     s.connect((HOST, PORT))
-# except ConnectionRefusedError as e:
-#     print(e)
-# except ConnectionResetError as e:
-#     print(e)
-# except ConnectionAbortedError as e:
-#     print(e)
 
 
 def process_event(event):
@@ -49,7 +41,7 @@ sc.setLogLevel('ERROR')
 ssc = StreamingContext(sc, 1)
 
 # Create a DStream that will connect to hostname:port, like localhost:9999
-dstream = ssc.socketTextStream("localhost", 9001)
+dstream = ssc.socketTextStream("localhost", 9996)
 
 # Run the processing function on the datastream
 processed_dstream = dstream.map(process_event)
