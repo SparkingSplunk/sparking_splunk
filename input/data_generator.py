@@ -13,13 +13,16 @@ def generator(value, HOST, PORT):
         "source_type": "json"
     }
 
+    string_package = json.dumps(package) + '\n'
+
+
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((HOST, PORT))
-
-        string_package = json.dumps(package) + '\n'
         print(string_package)
         s.send(string_package.encode())
+
+        
 
     except ConnectionRefusedError as e:
         print(e)
