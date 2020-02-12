@@ -1,0 +1,18 @@
+[app/ui]
+version = 8.0.1
+modtime = 1581388209.389504800
+
+[app/launcher]
+version = 8.0.1
+modtime = 1581388209.392488600
+
+[views/anomaly_detection_streaming_pipeline]
+owner = admin
+version = 8.0.1
+modtime = 1581388744.573473400
+
+[html/anomaly_detection_streaming_pipeline]
+access = read : [ * ], write : [ admin, power ]
+owner = admin
+version = 8.0.1
+modtime = 1581488060.131341400
