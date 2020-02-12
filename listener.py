@@ -1,10 +1,10 @@
 import socket
 
 INPUT_HOST = 'localhost'  # Standard loopback interface address (localhost)
-INPUT_PORT = 9998         # Port to listen on (non-privileged ports are > 1023)
+INPUT_PORT = 9996         # Port to listen on (non-privileged ports are > 1023)
 
 OUTPUT_HOST = 'localhost'
-OUTPUT_PORT = 9996
+OUTPUT_PORT = 9998
 
 while True:
     print("Trying to reconnect ...")
@@ -29,15 +29,15 @@ while True:
         with input_conn:
             print('Input connected by', input_addr)
             with output_conn:
-                print('Input connected by', output_addr)
+                print('put connected by', output_addr)
 
                 while True:
                     package = input_conn.recv(1024)
+                    if not package:
+                        break
                     print(package)
-                    # try:
                     output_conn.send(package)
-                    # except Exception as e:
-                    #     print(e)
+
         input_socket.close()
         output_socket.close()
 
