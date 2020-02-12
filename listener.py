@@ -29,7 +29,7 @@ while True:
         with input_conn:
             print('Input connected by', input_addr)
             with output_conn:
-                print('Input connected by', output_addr)
+                print('Output connected by', output_addr)
 
                 while True:
                     package = input_conn.recv(1024)

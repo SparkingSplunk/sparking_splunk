@@ -3,13 +3,10 @@ import json
 from time import sleep
 
 value = 1
-package = {
-    "metric_label": "CPU",
-    "metric_value": value,
-    "host": "Erics-MacBook-Pro-34.local",
-    "source": "Splunk_Index",
-    "source_type": "json"
-}
+package = {"event": "Hello, world!",
+           "metric_value": value,
+           "sourcetype": "json",
+           "source": "testsrc"}
 
 HOST = 'localhost'    # The remote host
 PORT = 9000           # The same port as used by the server
@@ -21,13 +18,13 @@ while True:
 
         while True:
 
-            package['metric_value'] = value
+            package['metric_value'] = value % 5
             value += 1
             string_package = json.dumps(package) + '\n'
             print(string_package)
             s.send(string_package.encode())
 
-            sleep(1)
+            sleep(0.1)
 
     except ConnectionRefusedError as e:
         print(e)
