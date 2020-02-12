@@ -2,7 +2,8 @@ from pyspark import SparkContext
 from pyspark.streaming import StreamingContext
 import socket
 import json
-from process_rdd import process_rdd
+from config import process_rdd
+from config import stream_config
 
 
 def process_send_rdd(rdd):
@@ -32,14 +33,11 @@ ssc = StreamingContext(sc, batchDuration=0.1)
 # Create a DStream that will connect to hostname:port, like localhost:9999
 dstream = ssc.socketTextStream("localhost", 9001)
 
-# Extract the numerical values
-value_stream = dstream.map(lambda event: json.loads(event)["metric_value"])
-
-# Create a windowed data stream
-windowed_stream = value_stream.window(windowDuration=5, slideDuration=0.1)
+# Configure the output stream
+output_stream = stream_config(dstream)
 
 # Process and send each event through the specified port
-windowed_stream.foreachRDD(process_send_rdd)
+output_stream.foreachRDD(process_send_rdd)
 
 ssc.start()             # Start the computation
 ssc.awaitTermination()  # Wait for the computation to terminate

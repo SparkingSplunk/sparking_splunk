@@ -18,7 +18,7 @@ while True:
 
         while True:
 
-            package['metric_value'] = value % 5
+            package['metric_value'] = value
             value += 1
             string_package = json.dumps(package) + '\n'
             print(string_package)
