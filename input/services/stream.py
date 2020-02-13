@@ -11,7 +11,7 @@ def stream_config(dstream):
     value_stream = dstream.map(lambda event: json.loads(event)["metric_value"])
 
     # Create a windowed data stream
-    windowed_stream = value_stream.window(windowDuration=5, slideDuration=0.5)
+    windowed_stream = value_stream.window(windowDuration=3, slideDuration=0.5)
 
     return windowed_stream
 
@@ -24,7 +24,7 @@ def process_rdd(rdd):
 
     window_length = len(window_array)
     if window_length == 0:
-        return
+        return None
 
     average = sum(window_array) / window_length
     output["mean"] = average
@@ -77,6 +77,10 @@ def process_send_rdd(rdd):
 
     # Process the RDD
     output_dict = process_rdd(rdd)
+
+    if output_dict is None:
+        return
+
     send_event(output_dict)
 
 

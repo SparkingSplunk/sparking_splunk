@@ -6,7 +6,12 @@ import os
 
 Listener=Listener("localhost", 9111)
 
+# magic_value = 0
+
 app=Flask(__name__)
+
+# def magic_funtion():
+#
 
 @app.route('/')
 def test():
@@ -21,7 +26,8 @@ def up():
 
 @app.route('/down', methods=["POST"])
 def down():
-
+    while(1):
+        x = 1
     Listener.clickme("down")
     return "down"
 

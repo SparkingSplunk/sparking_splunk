@@ -11,7 +11,7 @@ def stream_config(dstream):
     value_stream = dstream.map(lambda event: json.loads(event)["metric_value"])
 
     # Create a windowed data stream
-    windowed_stream = value_stream.window(windowDuration=5, slideDuration=0.1)
+    windowed_stream = value_stream.window(windowDuration=3, slideDuration=0.5)
 
     return windowed_stream
 
@@ -80,7 +80,7 @@ def process_send_rdd(rdd):
 # Create a local StreamingContext with two working thread and batch interval of 1 second
 sc = SparkContext("local[*]", "NetworkWordCount")
 sc.setLogLevel('ERROR')
-ssc = StreamingContext(sc, batchDuration=0.1)
+ssc = StreamingContext(sc, batchDuration=0.5)
 
 # Create a DStream that will connect to hostname:port, like localhost:9999
 dstream = ssc.socketTextStream("localhost", 9001)
