@@ -1,4 +1,107 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ae108b13-407e-48a6-a61d-51af6018b463" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/sparking_splunk.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sparking_splunk.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/appserver/static/splunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/appserver/static/splunk.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/data_generator.py" beforeDir="false" afterPath="$PROJECT_DIR$/bin/data_generator.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/stream.py" beforeDir="false" afterPath="$PROJECT_DIR$/bin/stream.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input/services/listener.py" beforeDir="false" afterPath="$PROJECT_DIR$/input/services/listener.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input/services/stream.py" beforeDir="false" afterPath="$PROJECT_DIR$/input/services/stream.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/metadata/local.meta" beforeDir="false" afterPath="$PROJECT_DIR$/metadata/local.meta" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1XhQEAmohKbv3uocVY0ADTq9QU7" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
+      <module name="sparking_splunk" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Roast\PycharmProjects\Stream\venv2\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ae108b13-407e-48a6-a61d-51af6018b463" name="Default Changelist" comment="" />
+      <created>1581575618448</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1581575618448</updated>
+      <workItem from="1581575620714" duration="53000" />
+      <workItem from="1581575675002" duration="1105000" />
+      <workItem from="1581577149214" duration="4871000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="414" y="176" width="1092" height="706" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1581575721814">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="176" width="1092" height="706" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1581575721814" />
+    <state x="740" y="276" key="FileChooserDialogImpl" timestamp="1581575671151">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="276" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1581575671151" />
+    <state x="461" y="163" key="SettingsEditor" timestamp="1581575751658">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="163" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1581575751658" />
+    <state x="656" y="345" key="com.intellij.ide.util.TipDialog" timestamp="1581577150254">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="656" y="345" key="com.intellij.ide.util.TipDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1581577150254" />
+  </component>
 </project>

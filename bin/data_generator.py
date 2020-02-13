@@ -10,7 +10,7 @@ package = {"event": "Hello, world!",
            "source": "testsrc"}
 
 HOST = 'localhost'    # The remote host
-PORT = 9000           # The same port as used by the server
+PORT = 9005           # The same port as used by the server
 
 while True:
     try:

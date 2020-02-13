@@ -1,14 +1,8 @@
 from pyspark import SparkContext
 from pyspark.streaming import StreamingContext
-
 import socket
 import json
-
-import os
-
-# os.environ["SPARK_HOME"] = "/usr/local/Cellar/apache-spark/1.5.1/"
-os.environ["PYSPARK_PYTHON"]="/usr/local/bin/python3.7"
-os.environ["PYSPARK_DRIVER_PYTHON"]="/usr/local/bin/python3.7"
+import time
 
 
 def stream_config(dstream):
@@ -17,7 +11,7 @@ def stream_config(dstream):
     value_stream = dstream.map(lambda event: json.loads(event)["metric_value"])
 
     # Create a windowed data stream
-    windowed_stream = value_stream.window(windowDuration=5, slideDuration=0.1)
+    windowed_stream = value_stream.window(windowDuration=5, slideDuration=0.5)
 
     return windowed_stream
 
@@ -47,9 +41,13 @@ def process_rdd(rdd):
     out = {}
 
     value = window_array[-1]
-    severity = min(1, abs(value - average) / (5 * mean_abs_dev))
 
-    out["model_results"] = json.dumps(output) + '\n'
+    if mean_abs_dev == 0:
+        severity = 0
+    else:
+        severity = min(1, abs(value - average) / (5 * mean_abs_dev))
+
+    out["model_results"] = json.dumps(output)
     out["Error"] = ""
     out["host"] = "ANZ"
     out["severity"] = severity
@@ -73,8 +71,7 @@ def process_send_rdd(rdd):
 
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((HOST, PORT))
-
-        string_package = json.dumps(event) + '\n'
+        string_package = json.dumps(event)
         print(string_package)
         s.send(string_package.encode())
 
@@ -86,11 +83,11 @@ def process_send_rdd(rdd):
 # Create a local StreamingContext with two working thread and batch interval of 1 second
 sc = SparkContext("local[*]", "NetworkWordCount")
 sc.setLogLevel('ERROR')
-ssc = StreamingContext(sc, batchDuration=1)
+ssc = StreamingContext(sc, batchDuration=0.5)
 
 # Create a DStream that will connect to hostname:port, like localhost:9999
 dstream = ssc.socketTextStream("localhost", 9001)
-dstream.pprint()
+
 # Configure the output stream
 output_stream = stream_config(dstream)
 

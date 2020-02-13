@@ -24,7 +24,7 @@ def process_rdd(rdd):
 
     window_length = len(window_array)
     if window_length == 0:
-        return
+        return {"metric_value": 5}
 
     average = sum(window_array) / window_length
     output["mean"] = average
@@ -43,7 +43,7 @@ def process_rdd(rdd):
     value = window_array[-1]
     severity = min(1, abs(value - average) / (5 * mean_abs_dev))
 
-    out["model_results"] = json.dumps(output) + '\n'
+    out["model_results"] = json.dumps(output)
     out["Error"] = ""
     out["host"] = "ANZ"
     out["severity"] = severity
@@ -68,7 +68,7 @@ def process_send_rdd(rdd):
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         s.connect((HOST, PORT))
 
-        string_package = json.dumps(event) + '\n'
+        string_package = json.dumps(event)
         print(string_package)
         s.send(string_package.encode())
 

@@ -7,7 +7,7 @@ os.environ["PYSPARK_PYTHON"]="/usr/local/bin/python3.7"
 os.environ["PYSPARK_DRIVER_PYTHON"]="/usr/local/bin/python3.7"
 
 INPUT_HOST = '127.0.0.1'  # Standard loopback interface address (localhost)
-INPUT_PORT = 9112         # Port to listen on (non-privileged ports are > 1023)
+INPUT_PORT = 9111         # Port to listen on (non-privileged ports are > 1023)
 
 OUTPUT_HOST = '127.0.0.1'
 OUTPUT_PORT = 9001
@@ -26,9 +26,10 @@ while True:
 
         print("Waiting for input connection ...")
         input_conn, input_addr = input_socket.accept()
-        output_conn, output_addr = output_socket.accept()
         print("Input connected.")
-
+        print("Waiting for output connection ...")
+        output_conn, output_addr = output_socket.accept()
+        print("Output connected.")
 
         with input_conn:
             print('Input connected by', input_addr)
@@ -40,7 +41,8 @@ while True:
                     # if not package:
                     #     break
                     print(package)
-                output_conn.send(package)
+                    output_conn.send(package)
+
         input_socket.close()
         output_socket.close()
 

@@ -16,3 +16,8 @@ access = read : [ * ], write : [ admin, power ]
 owner = admin
 version = 8.0.1
 modtime = 1581564472.020367000
+
+[indexes/tier_2]
+owner = dy27
+version = 8.0.1
+modtime = 1581577008.135637100
