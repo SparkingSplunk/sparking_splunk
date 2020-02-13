@@ -9,13 +9,19 @@ class Listener:
         self.port=PORT
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.s.connect((HOST, PORT))
+        self.value=0
 
-    
-    def generator(self,value):
-
+    def clickme(self, action):
+        if action=="up":
+            self.value+=1
+        elif action=="down":
+            self.value-=1
+        else:
+            print("not found")
+      
         package = {
             "metric_label": "CPU",
-            "metric_value": value,
+            "metric_value": self.value,
             "host": "Erics-MacBook-Pro-34.local",
             "source": "Splunk_Index",
             "source_type": "json"

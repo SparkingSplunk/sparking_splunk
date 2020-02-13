@@ -3,25 +3,28 @@
   <head>
     <title>Flask app</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <script>
+        function sendclick(vote){
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              console.log(this.responseText);
+            }
+          };
+          xhttp.open("POST", vote, true);
+          xhttp.send();
+        }
+
+    </script>
   </head>
+  
   <body>
     <header>
       <div class="container">
         <h1 class="logo">Click the button</h1>
-        <strong><nav>
-          <ul class="menu">
-            <li>
-                <form action="/sendClick" method="post">
-                <button name="forwardBtn" type="submit">Click Me</button>
-                </form>
-            </li>
-            <li><a href="http://google.com">About</a></li>
-          </ul>
-        </nav></strong>
       </div>
     </header>
-    <div class="container">
-      "hello world"
-    </div>
+    <button name="forwardBtn" onClick="sendclick('up')" >Vote Yes</button>
+    <button name="forwardBtn" onClick="sendclick('down')" >Vote No</button>
   </body>
 </html>
