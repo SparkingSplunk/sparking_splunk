@@ -28,7 +28,7 @@ from config_spark import stream_config
 # Create a local StreamingContext with two working thread and batch interval of 1 second
 sc = SparkContext("local[*]", "NetworkWordCount")
 sc.setLogLevel('ERROR')
-ssc = StreamingContext(sc, batchDuration=0.1)
+ssc = StreamingContext(sc, batchDuration=1)
 
 # Create a DStream that will connect to hostname:port, like localhost:9999
 

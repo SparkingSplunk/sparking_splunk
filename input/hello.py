@@ -1,10 +1,10 @@
 from flask import Flask
 from flask import render_template
-from data_generator import generator
+from data_generator import Listener
 import os
 
 clicks={"blue":0}
-
+Listener=Listener("localhost", 9111)
 
 app=Flask(__name__)
 
@@ -17,7 +17,7 @@ def test():
 def sendClick():
     clicks["blue"]+=1
     
-    generator(clicks["blue"], "localhost", 9111)
+    Listener.generator(clicks["blue"])
     return str(clicks["blue"])
 
 
