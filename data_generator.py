@@ -20,7 +20,7 @@ while True:
 
             package['metric_value'] = value
             value += 1
-            string_package = json.dumps(package) + '\n'
+            string_package = json.dumps(package)
             print(string_package)
             s.send(string_package.encode())
 
@@ -37,3 +37,16 @@ while True:
 
     except OSError as e:
         print(e)
+
+
+def socket_connect(host, port):
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect((host, port))
+    return s
+
+
+def socket_send(s, package):
+    string_package = json.dumps(package)
+    print(string_package)
+    s.send(string_package.encode())
+
