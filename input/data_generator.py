@@ -4,13 +4,12 @@ from time import sleep
 
 
 class Listener:
-    def __init__(self,HOST, PORT):
-        self.host=HOST
-        self.port=PORT
+    def __init__(self, HOST, PORT):
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        print((HOST,PORT))
         self.s.connect((HOST, PORT))
 
-    
+
     def generator(self,value):
 
         package = {

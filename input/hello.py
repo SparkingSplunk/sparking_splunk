@@ -4,7 +4,7 @@ from data_generator import Listener
 import os
 
 clicks={"blue":0}
-Listener=Listener("localhost", 9111)
+listener=Listener("localhost", 9112)
 
 app=Flask(__name__)
 
@@ -17,11 +17,7 @@ def test():
 def sendClick():
     clicks["blue"]+=1
     
-<<<<<<< HEAD
-    Listener.generator(clicks["blue"])
-=======
-    generator(clicks["blue"], "localhost", 9000)
->>>>>>> 1ca526be3da61382501d600a27da993398b13ba0
+    listener.generator(clicks["blue"])
     return str(clicks["blue"])
 
 

@@ -91,11 +91,11 @@ ssc = StreamingContext(sc, batchDuration=1)
 # Create a DStream that will connect to hostname:port, like localhost:9999
 dstream = ssc.socketTextStream("localhost", 9001)
 dstream.pprint()
-# # Configure the output stream
-# output_stream = stream_config(dstream)
-#
-# # Process and send each event through the specified port
-# output_stream.foreachRDD(process_send_rdd)
+# Configure the output stream
+output_stream = stream_config(dstream)
+
+# Process and send each event through the specified port
+output_stream.foreachRDD(process_send_rdd)
 
 ssc.start()             # Start the computation
 ssc.awaitTermination()  # Wait for the computation to terminate
