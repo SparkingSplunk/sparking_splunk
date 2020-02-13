@@ -17,7 +17,11 @@ def test():
 def sendClick():
     clicks["blue"]+=1
     
+<<<<<<< HEAD
     Listener.generator(clicks["blue"])
+=======
+    generator(clicks["blue"], "localhost", 9000)
+>>>>>>> 1ca526be3da61382501d600a27da993398b13ba0
     return str(clicks["blue"])
 
 
