@@ -17,7 +17,7 @@ def test():
 def sendClick():
     clicks["blue"]+=1
     
-    generator(clicks["blue"], "localhost", 9111)
+    generator(clicks["blue"], "localhost", 9000)
     return str(clicks["blue"])
 
 

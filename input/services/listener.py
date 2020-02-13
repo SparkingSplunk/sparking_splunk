@@ -1,12 +1,16 @@
 import socket
+import os
+from time import sleep
 
+# os.environ["SPARK_HOME"] = "/usr/local/Cellar/apache-spark/1.5.1/"
+os.environ["PYSPARK_PYTHON"]="/usr/local/bin/python3.7"
+os.environ["PYSPARK_DRIVER_PYTHON"]="/usr/local/bin/python3.7"
 
+INPUT_HOST = '127.0.0.1'  # Standard loopback interface address (localhost)
+INPUT_PORT = 9000         # Port to listen on (non-privileged ports are > 1023)
 
-INPUT_HOST = 'localhost'  # Standard loopback interface address (localhost)
-INPUT_PORT = 9111         # Port to listen on (non-privileged ports are > 1023)
-
-OUTPUT_HOST = 'localhost'
-OUTPUT_PORT = 9112
+OUTPUT_HOST = '127.0.0.1'
+OUTPUT_PORT = 9001
 
 while True:
     print("Trying to reconnect ...")
@@ -31,18 +35,21 @@ while True:
         with input_conn:
             print('Input connected by', input_addr)
             with output_conn:
-                print('put connected by', output_addr)
+                print('Output connected by', output_addr)
 
                 while True:
                     package = input_conn.recv(1024)
-                    # if not package:
-                    #     break
-                    print(package)
+                    print((package))
+                    empty = "".encode()
+                    if package == empty:
+                        print("empty string")
+                        continue
                     output_conn.send(package)
 
         input_socket.close()
         output_socket.close()
 
+        sleep(3)
     except ConnectionResetError as e:
         print(e)
 
