@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Flask app</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <script>
+        function sendclick(vote){
+          var xhttp = new XMLHttpRequest();
+          xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+              console.log(this.responseText);
+            }
+          };
+          xhttp.open("POST", vote, true);
+          xhttp.send();
+        }
+
+    </script>
+  </head>
+  
+  <body>
+    <header>
+      <div class="container">
+        <h1 class="logo">Click the button</h1>
+      </div>
+    </header>
+    <button name="forwardBtn" onClick="sendclick('up')" >Vote Yes</button>
+    <button name="forwardBtn" onClick="sendclick('down')" >Vote No</button>
+  </body>
+</html>
