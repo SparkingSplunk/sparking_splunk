@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template
 from data_generator import generator
+import os
 
 clicks={"blue":0}
 
@@ -16,9 +17,9 @@ def test():
 def sendClick():
     clicks["blue"]+=1
     
-    generator(clicks["blue"], "localhost", 9996)
+    generator(clicks["blue"], "localhost", 9111)
     return str(clicks["blue"])
 
 
 if __name__=="__main__":
-    app.run(host="127.0.0.1", port=8000, debug=None)
+    app.run(host="127.0.0.1", port=5000, debug=None)
