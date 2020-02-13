@@ -203,9 +203,12 @@ require([
 require(["splunkjs/mvc/searchmanager"], function(SearchManager) {
     const search_string = `
     index = test01
-    | eval Time = _time
-    | sort _time
-    | table metric_value Time`;
+    | spath input=_raw
+    | spath input=model_results
+    | sort time
+    | eval lower0 = mvindex('lower{}',0), lower1 = mvindex('lower{}',1), lower2 = mvindex('lower{}',2), lower3 = mvindex('lower{}',3)
+    | eval upper0 = mvindex('upper{}',0), upper1 = mvindex('upper{}',1), upper2 = mvindex('upper{}',2), upper3 = mvindex('upper{}',3)
+    | table time metric_value lower0 lower1 lower2 lower3 upper0 upper1 upper2 upper3`;
 
     const search = new SearchManager({
         id: 'search1', 
@@ -226,10 +229,19 @@ require(["splunkjs/mvc/searchmanager"], function(SearchManager) {
         if (search_data.data().rows.length === 0) return;
         if(this.last_data === JSON.stringify(search_data.data())) return;
         this.last_data = JSON.stringify(search_data.data());
-
         const data = transpose(search_data.data().rows);
         const metric_values = data[search_data.data().fields.indexOf('metric_value')];
-        const times = data[search_data.data().fields.indexOf('Time')];
+
+        const lower0 = data[search_data.data().fields.indexOf('lower0')];
+        const lower1 = data[search_data.data().fields.indexOf('lower1')];
+        const lower2 = data[search_data.data().fields.indexOf('lower2')];
+        const lower3 = data[search_data.data().fields.indexOf('lower3')];
+        const upper0 = data[search_data.data().fields.indexOf('upper0')];
+        const upper1 = data[search_data.data().fields.indexOf('upper1')];
+        const upper2 = data[search_data.data().fields.indexOf('upper2')];
+        const upper3 = data[search_data.data().fields.indexOf('upper3')];
+
+        const times = data[search_data.data().fields.indexOf('time')];
 
         // console.log(metric_values)
         // console.log(times)
@@ -238,7 +250,19 @@ require(["splunkjs/mvc/searchmanager"], function(SearchManager) {
         window.addinng_points = true;
 
         for(let i = 0; i < metric_values.length; i++) {
-            addDataPoint(Number(times[i]), Number(metric_values[i]));
+            addDataPoint(
+                Number(times[i]),
+                Number(metric_values[i]),
+                Number(lower0[i]),
+                Number(lower1[i]),
+                Number(lower2[i]),
+                Number(lower3[i]),
+                Number(upper0[i]),
+                Number(upper1[i]),
+                Number(upper2[i]),
+                Number(upper3[i]),
+                );
+
         }
 
     });

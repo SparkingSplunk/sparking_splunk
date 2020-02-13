@@ -1,5 +1,6 @@
 import socket
 import json
+import random
 from time import sleep
 
 value = 1
@@ -18,7 +19,7 @@ while True:
 
         while True:
 
-            package['metric_value'] = value % 5
+            package['metric_value'] = random.random()*200 -100
             value += 1
             string_package = json.dumps(package) + '\n'
             print(string_package)
