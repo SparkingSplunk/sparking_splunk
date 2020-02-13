@@ -3,23 +3,31 @@ import json
 from time import sleep
 
 
-package = {"metric_value": "NaN"}
+package = {
+    "metric_label": "CPU",
+    "metric_value": 0,
+    "host": "Erics-MacBook-Pro-34.local",
+    "source": "Splunk_Index",
+    "source_type": "json"
+}
 
 class Listener:
-    def __init__(self, HOST, PORT):
+    def __init__(self, HOST, PORT, value):
         self.s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         print((HOST,PORT))
         self.s.connect((HOST, PORT))
-        self.value=0
+        self.value=value
 
     def send(self):
 
         try:
-            package['metric_value'] = self.value
-            string_package = json.dumps(package) + '\n'
-            print(string_package)
-            self.s.send(string_package.encode())
-            sleep(0.1)
+            if self.value == "NaN":
+                self.s.send("NaN".encode())
+            else:
+                package['metric_value'] = self.value
+                string_package = json.dumps(package) + '\n'
+                print(string_package)
+                self.s.send(string_package.encode())
 
         except ConnectionRefusedError as e:
             print(e)
@@ -44,10 +52,11 @@ class Listener:
 
 
 if __name__ == '__main__':
-    listener = Listener("localhost", 9111)
+    package = {"metric_value": "NaN"}
+    listener = Listener("localhost", 9111, "NaN")
 
     while True:
-        sleep(0.5)
+        sleep(0.1)
         listener.send()
 
 

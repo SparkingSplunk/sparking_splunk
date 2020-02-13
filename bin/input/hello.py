@@ -6,17 +6,7 @@ import threading
 from time import sleep
 click = 0
 
-listener = Listener("localhost", 9111)
-
-last_package = {
-    "metric_label": "CPU",
-    "metric_value": click,
-    "host": "Erics-MacBook-Pro-34.local",
-    "source": "Splunk_Index",
-    "source_type": "json"
-}
-
-
+listener = Listener("localhost", 9111, 0)
 
 app=Flask(__name__)
 
