@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>_stream4</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+  </head>
+  <body style="background-color:white;">
+    <!--<center>-->
+      <img src="{{url_for('static', filename='logo.jpg')}}" style="position:relative; left:12em; top:5em" height="350" > 
+
+      <form action="/sendClick" method="post">
+      <button name="forwardBtn" type="submit" class="button" style=" background-color:#84f14e; color:#FFFFFF; border-radius:0.15em; box-sizing:border-box; text-decoration:none; font-weight:400; width:600px; height: 200px; top:300px; font-size:80px; padding:0.7em 1.4em; position:relative; left:2.5em;">+</button>
+      </form>
+
+      <form action="/sendClick" method="post">
+      <button name="forwardBtn" type="submit" style="background-color:#eb4c02; color:#FFFFFF; border-radius:0.15em; box-sizing:border-box; text-decoration:none; font-weight:400; width:600px; height:200px; font-size:80px; padding:0.7em 1.4em; position:relative; left:2.5em; top:4em;">-</button>
+      </form>
+
+      <img src="{{url_for('static', filename='sponsored.png')}}" style="position:absolute; bottom:5px; left:5px;" >
+
+    <!--</center>-->
+  </body>
+</html>
