@@ -1,16 +1,15 @@
 
-console.log('hello david');
 window.chartColors = {
     red: "#fc050520",
-    orange: "#fcaa0520",
+    orange: "#ff9d0020",
     yellow: "#e7fc0520",
-    blue: "#2200ff20",
+    blue: "#00a2ff20",
 
     green: "#2efc0520",
     grey: "#7a787a20",
 
     purple: "#dd00ff20",
-
+    teal: "#00ffee20",
     black: "#000000"
 
 }
@@ -33,107 +32,111 @@ var config = {
             borderWidth: 0,
             pointRadius: 0,
             data: [],
-            fill: 1
+            fill: '+1'
         }, {
             label: '1',
             backgroundColor: presets.red,
             borderWidth: 0,
             pointRadius: 0,
             data: [],
-            fill: 1
+            fill: '+1'
         }, {
             label: '2',
             backgroundColor: presets.orange,
             borderWidth: 0,
             pointRadius: 0,
             data: [],
-            fill: 2
+            fill: '+1'
         }, {
             label: '3',
             backgroundColor: presets.orange,
             borderWidth: 0,
             pointRadius: 0,
             data: [],
-            fill: 2
+            fill: '+1'
         }, {
             label: '4',
-            backgroundColor: presets.orange,
+            backgroundColor: presets.yellow,
             borderWidth: 0,
             pointRadius: 0,
             data: [],
-            fill: 3
+            fill: '+1'
         }, {
             label: '5',
             backgroundColor: presets.yellow,
             borderWidth: 0,
             pointRadius: 0,
             data: [],
-            fill: 3
+            fill: '+1'
         }, {
             label: '6',
-            backgroundColor: presets.yellow,
+            backgroundColor: presets.blue,
             borderWidth: 0,
             pointRadius: 0,
             data: [],
-            fill: 4
+            fill: '+1'
         }, {
             label: '7',
+            backgroundColor: presets.blue,
+            borderWidth: 0,
+            pointRadius: 0,
+            data: [],
+            fill: '+1'
+        }, {
+            label: '8',
             backgroundColor: presets.yellow,
             borderWidth: 0,
             pointRadius: 0,
             data: [],
-            fill: 4
-        }, {
-            label: '8',
-            backgroundColor: presets.blue,
-            borderWidth: 0,
-            pointRadius: 0,
-            data: [],
-            fill: 5
+            fill: '+1'
         }, {
             label: '9',
-            backgroundColor: presets.blue,
+            backgroundColor: presets.yellow,
             borderWidth: 0,
             pointRadius: 0,
             data: [],
-            fill: 5
+            fill: '+1'
         }, {
             label: '10',
-            backgroundColor: presets.purple,
+            backgroundColor: presets.orange,
             borderWidth: 0,
             pointRadius: 0,
             data: [],
-            fill: 6
+            fill: '+1'
         }, {
             label: '11',
-            backgroundColor: presets.purple,
+            backgroundColor: presets.orange,
             borderWidth: 0,
             pointRadius: 0,
             data: [],
-            fill: 6
+            fill: '+1'
         }, {
             label: '12',
-            backgroundColor: presets.grey,
+            backgroundColor: presets.red,
             borderWidth: 0,
             pointRadius: 0,
             data: [],
-            fill: 7
+            fill: '+1'
         }, {
             label: '13',
-            backgroundColor: presets.grey,
+            backgroundColor: presets.red,
             borderWidth: 0,
             pointRadius: 0,
             data: [],
-            fill: 7
+            fill: '+1'
         }]
     },
     options: {
         responsive: true,
         title: {
-            display: true,
+            display: false,
             text: 'Chart.js Line Chart'
         },
+        legend: {
+            display: false,
+        },
         tooltips: {
+            enabled: false,
             mode: 'index',
             intersect: false,
         },
@@ -146,7 +149,7 @@ var config = {
                 display: true,
                 scaleLabel: {
                     display: true,
-                    labelString: 'Month'
+                    labelString: 'Time(s)'
                 }
             }],
             yAxes: [{
@@ -154,7 +157,7 @@ var config = {
                 stacked: false,
                 scaleLabel: {
                     display: true,
-                    labelString: 'Value'
+                    labelString: 'Clicks'
                 }
             }]
         }
@@ -162,69 +165,13 @@ var config = {
 };
 
 window.onload = function() {
-    console.log('hey')
     var ctx = document.getElementById('canvas').getContext('2d');
     window.myLine = new Chart(ctx, config);
 }
 
-document.getElementById('randomizeData').addEventListener('click', function() {
-    config.data.datasets.forEach(function(dataset) {
-        dataset.data = dataset.data.map(function() {
-            return randomScalingFactor();
-        });
 
-    });
-
-    window.myLine.update();
-});
 
 var colorNames = Object.keys(window.chartColors);
-document.getElementById('addDataset').addEventListener('click', function() {
-    var colorName = colorNames[config.data.datasets.length % colorNames.length];
-    var newColor = window.chartColors[colorName];
-    var newDataset = {
-        label: 'Dataset ' + config.data.datasets.length,
-        backgroundColor: newColor,
-        borderColor: newColor,
-        data: [],
-        fill: false
-    };
-
-    for (var index = 0; index < config.data.labels.length; ++index) {
-        newDataset.data.push(randomScalingFactor());
-    }
-
-    config.data.datasets.push(newDataset);
-    window.myLine.update();
-});
-
-document.getElementById('addData').addEventListener('click', function() {
-    if (config.data.datasets.length > 0) {
-        var month = MONTHS[config.data.labels.length % MONTHS.length];
-        config.data.labels.push(month);
-
-        config.data.datasets.forEach(function(dataset) {
-            dataset.data.push(randomScalingFactor());
-        });
-
-        window.myLine.update();
-    }
-});
-
-document.getElementById('removeDataset').addEventListener('click', function() {
-    config.data.datasets.splice(0, 1);
-    window.myLine.update();
-});
-
-document.getElementById('removeData').addEventListener('click', function() {
-    // config.data.labels.splice(-1, 1); // remove the label first
-    config.data.labels = config.data.labels.slice(1)
-    config.data.datasets.forEach(function(dataset) {
-        dataset.data.shift();
-    });
-
-    window.myLine.update();
-});
 
 const next_points = [];
 

@@ -7,7 +7,7 @@
     <link rel="shortcut icon" href="/en-US/static/@4802F9CF351D984097A12D7EDD16AF22B4BB8428D3ABF161975B8296D5D548FB/img/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="{{SPLUNKWEB_URL_PREFIX}}/static/build/css/bootstrap-enterprise.css" />
     <link rel="stylesheet" type="text/css" href="{{SPLUNKWEB_URL_PREFIX}}/static/build/css/splunkjs-dashboard.css" />
-    <script type="module" src="{{SPLUNKWEB_URL_PREFIX}}/static/app/sparking_splunk/api/shortcuts.js"></script> 	
+    <script type="module" src="{{SPLUNKWEB_URL_PREFIX}}/static/app/sparking_splunk/api/shortcuts.js"></script>
 
 
 </head>
@@ -16,18 +16,10 @@
 <div class="dashboard-body container-fluid main-section-body" data-role="main">
     <div class="dashboard-header clearfix">
         <h2>Anomaly Detection Streaming Pipeline</h2>
-        <p class="description">Nil</p>
-    <div class="fieldset"><div id="input1"></div></div>
-    <div style="width:100%;height: 60vh;"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-		<canvas id="canvas" style="display: block;" width="350" height="100" class="chartjs-render-monitor"></canvas>
-	</div>
-      <br/>
-      <br/>
-	<button id="randomizeData">Randomize Data</button>
-	<button id="addDataset">Add Dataset</button>
-	<button id="removeDataset">Remove Dataset</button>
-	<button id="addData">Add Data</button>
-	<button id="removeData">Remove Data</button>
+        <div class="fieldset"><div id="input1"></div></div>
+        <div style="width:100%;"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+            <canvas id="canvas" style="display: block; height: 60vh;" width="798" height="399" class="chartjs-render-monitor"></canvas>
+        </div>
     </div>
 </div>
 <script src="{{SPLUNKWEB_URL_PREFIX}}/static/js/i18n.js"></script>
