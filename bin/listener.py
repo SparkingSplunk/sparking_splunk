@@ -1,10 +1,18 @@
 import socket
-
+import json
 INPUT_HOST = '127.0.0.1'  # Standard loopback interface address (localhost)
-INPUT_PORT = 9000         # Port to listen on (non-privileged ports are > 1023)
+INPUT_PORT = 9111         # Port to listen on (non-privileged ports are > 1023)
 
 OUTPUT_HOST = '127.0.0.1'
 OUTPUT_PORT = 9001
+
+last_package = json.dumps({
+    "metric_label": "CPU",
+    "metric_value": 0,
+    "host": "Erics-MacBook-Pro-34.local",
+    "source": "Splunk_Index",
+    "source_type": "json"
+}) + '\n'
 
 while True:
     print("Trying to reconnect ...")
@@ -15,7 +23,7 @@ while True:
         input_socket.bind((INPUT_HOST, INPUT_PORT))
         output_socket.bind((OUTPUT_HOST, OUTPUT_PORT))
 
-        input_socket.listen(1)
+        input_socket.listen(2)
         output_socket.listen(1)
 
         print("Waiting for input connection ...")
@@ -34,7 +42,12 @@ while True:
                 while True:
                     package = input_conn.recv(1024)
                     print(package)
-                    output_conn.send(package)
+                    if json.loads(package[0:-1])['metric_value'] == 'NaN':
+                        output_conn.send(last_package)
+                    else:
+                        output_conn.send(package)
+                        print(package)
+                        last_package = package
 
         input_socket.close()
         output_socket.close()
